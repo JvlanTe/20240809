@@ -1,22 +1,32 @@
 from selenium import webdriver
 from selenium.webdriver.common.by import By
 import time
+from dotenv import load_dotenv
+import os
+
+# .envを使う宣言
+load_dotenv()
 
 # Chromeを使う宣言
 driver = webdriver.Chrome()
 
+# .envの変数を使うよ（パスワードとか見れないようなやつ）
+URL = os.getenv("URL")
+email = os.getenv("email")
+password = os.getenv("password")
+
 time.sleep(3)
 
 try:
-    driver.get("https://plotacademy.jp/login")
+    driver.get(URL)
 
     email_input = driver.find_element(By.NAME, "email")
 
     password_input = driver.find_element(By.NAME, "password")
 
-    email_input.send_keys("test1@test.jp")
+    email_input.send_keys(email)
 
-    password_input.send_keys("test1111")
+    password_input.send_keys(password)
 
     time.sleep(3)
 
